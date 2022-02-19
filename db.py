@@ -48,6 +48,7 @@ class UserController:
         if user is None:
             return None
 
+        del user["_id"]
         del user["password"]
 
         return user
