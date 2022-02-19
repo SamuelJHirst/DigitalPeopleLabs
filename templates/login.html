@@ -1,0 +1,33 @@
+{% extends "partials/main.html" %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/login.css">
+<div id="login-container">
+    <div class="card" id="login-wrapper">
+        <div class="card-content">
+            <div class="text-center">
+                <img src="/static/img/login.png" alt="Login icon" id="login-icon">
+            </div>
+            <br />
+            <h1 class="text-center">Login</h1>
+            <br />
+            <div class="alert alert-danger" role="alert" id="login-invalid" style="display: none;">
+                Your username or password is incorrect. Please try again.
+            </div>
+            <form>
+                <div class="mb-3">
+                    <label for="username-input" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username-input">
+                </div>
+                <div class="mb-3">
+                    <label for="password-input" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password-input">
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="button" id="login-submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/static//js/login.js"></script>
+{% endblock %}
