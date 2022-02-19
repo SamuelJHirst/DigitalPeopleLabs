@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request, session
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder="web/templates",
+    static_folder="web/static"
+)
 app.secret_key = "secret"
 
-from db import UserController
+from db.UserController import UserController
 
 @app.route("/", methods=["GET"])
 def home():
