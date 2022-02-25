@@ -6,7 +6,7 @@ function submitLoginDetails() {
         username,
         password
     }).done(() => {
-        window.location = '/?banner=welcome'
+        window.location = '/dashboard?banner=welcome'
     }).fail(() => {
         $('#username-input').addClass('is-invalid');
         $('#password-input').addClass('is-invalid');

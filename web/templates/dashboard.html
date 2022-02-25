@@ -1,0 +1,9 @@
+{% extends "partials/main.html" %}
+{% block content %}
+{% if banner == "welcome" %}
+    <div class="alert alert-success" role="alert">
+        Welcome back, {{ session['user']['first_name'] }}!
+    </div>
+{% endif %}
+<h1>Hello World</h1>
+{% endblock %}

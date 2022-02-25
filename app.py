@@ -14,6 +14,10 @@ def home():
 
     return render_template("index.html", route="/", banner=banner)
 
+@app.route("/dashboard", methods=["GET"])
+def dashboard():
+    return render_template("dashboard.html", route="/dashboard")
+
 @app.route("/login", methods=["GET"])
 def login():
     return render_template("login.html", route="/login")

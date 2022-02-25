@@ -1,0 +1,58 @@
+@keyframes background-shift {
+    0% {
+        background-color: #2876f9;
+    }
+    25% {
+        background-color: linear-gradient(315deg, #2876f9 0%, #6d17cb 74%);
+    }
+    50% {
+        background-color: #6d17cb;
+    }
+    75% {
+        background-color: linear-gradient(315deg, #6d17cb 0%, #2876f9 74%);
+    }
+    100% {
+        background-color: #2876f9;
+    }
+}
+
+body {
+    overflow: hidden;
+}
+
+.row {
+    height: 100%;
+}
+
+.center-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+#main-img {
+    width: calc(100% - 100px);
+    max-width: 500px;
+}
+
+#left-col {
+    text-transform: uppercase;
+}
+
+#left-col h1 {
+    font-size: 3rem;
+}
+
+#left-col h2 {
+    font-size: 2rem;
+}
+
+#right-col {
+    background-color: #2876f9;
+    animation-name: background-shift;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+}

@@ -1,9 +1,27 @@
 {% extends "partials/main.html" %}
 {% block content %}
-{% if banner == "welcome" %}
-    <div class="alert alert-success" role="alert">
-        Welcome back, {{ session['user']['first_name'] }}!
+<link rel="stylesheet" href="/static/css/landing.css">
+
+<div class="row">
+    <div class="col-6 landing-col center-wrapper" id="left-col">
+        <h1>The way we work is changing...</h1>
+        <h2>We're here to help you adapt.</h2>
+        <br />
+        <div>
+            <a href="/login" class="btn btn-primary btn-lg">Get Started</a>
+            <a href="/about" class="btn btn-secondary btn-lg">Learn More</a>
+        </div>
     </div>
-{% endif %}
-<h1>Hello World</h1>
+    <div class="col-6 landing-col" id="right-col">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10 center-wrapper">
+                <img src="/static/img/working-from-home.png" alt="Working from home image" id="main-img" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="strip"></div>
+
 {% endblock %}
