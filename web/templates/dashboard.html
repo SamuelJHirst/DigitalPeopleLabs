@@ -1,9 +1,34 @@
 {% extends "partials/main.html" %}
 {% block content %}
+<link rel="stylesheet" href="/static/css/dashboard.css">
 {% if banner == "welcome" %}
     <div class="alert alert-success" role="alert">
         Welcome back, {{ session['user']['first_name'] }}!
     </div>
 {% endif %}
-<h1>Hello World</h1>
+<div class="row">
+    <div class="col-3" id="sidebar">
+        <div class="accordion" id="sidebarAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="findUserHeader">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#findUserCollapse" aria-expanded="true" aria-controls="findUserCollapse">
+                        Search Users
+                    </button>
+                </h2>
+                <div id="findUserCollapse" class="accordion-collapse collapse show" aria-labelledby="findUserHeader" data-bs-parent="#sidebarAccordion">
+                    <div class="accordion-body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="User's Name" aria-label="User's Name" aria-describedby="name-button" id="user-search-query">
+                            <button class="btn btn-outline-primary" type="button" id="name-button">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    <div class="col-9">
+        <div id="main"></div>
+    </div>
+    <script src="/static/js/find_user.js"></script>
+</div>
 {% endblock %}

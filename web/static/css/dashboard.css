@@ -1,0 +1,27 @@
+body {
+    overflow-x: hidden;
+}
+
+.row {
+    height: calc(100% - 56px);
+}
+
+#sidebar {
+    height: 100%;
+    background-color: #ffffff;
+    padding-right: 0;
+}
+
+.user-img {
+    height: 48px;
+    width: auto;
+}
+
+.user-badges {
+    text-align: right;
+}
+
+#header {
+    padding: 10px;
+    text-align: center;
+}
