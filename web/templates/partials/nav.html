@@ -9,11 +9,29 @@
                 <li class="nav-item">
                     <a class="nav-link {% if route == '/' %} active {% endif %}" href="/">Home</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if route == '/about' %} active {% endif %}" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if route == '/dashboard' %} active {% endif %}" href="/dashboard">Dashboard</a>
+                </li>
             </ul>
             <ul class="navbar-nav d-flex">
-                <li class="nav-item">
-                    <a class="nav-link {% if route == '/login' %} active {% endif %}" href="/login">Login</a>
-                </li>
+                    {% if session["user"] %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ session["user"]["first_name"] }} {{ session["user"]["last_name"] }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+                            </ul>
+                        </li>                    
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if route == '/login' %} active {% endif %}" href="/login">Login</a>
+                        </li>
+                    {% endif %}
+
             </ul>
         </div>
     </div>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, jsonify
+from flask import Flask, redirect, render_template, request, session, jsonify
 app = Flask(
     __name__,
     template_folder="web/templates",
@@ -10,19 +10,32 @@ from db.UserController import UserController
 
 @app.route("/", methods=["GET"])
 def home():
-    banner = request.args.get("banner")
-
-    return render_template("index.html", route="/", banner=banner)
+    return render_template("index.html", route="/")
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
-    return render_template("dashboard.html", route="/dashboard")
+    if "user" not in session.keys():
+        return redirect("/login")
+
+    banner = request.args.get("banner")
+    
+    return render_template("dashboard.html", route="/dashboard", banner=banner)
 
 @app.route("/login", methods=["GET"])
 def login():
+    if "user" in session.keys():
+        return redirect("/dashboard")
+
     return render_template("login.html", route="/login")
 
-@app.route("/api/user/auth", methods=["POST"])
+@app.route("/auth/logout", methods=["GET"])
+def auth_logout():
+    if "user" in session.keys():
+        del session["user"]
+
+    return redirect("/")
+
+@app.route("/api/user/login", methods=["POST"])
 def api_user_login():
     username = request.form.get("username")
     password = request.form.get("password")

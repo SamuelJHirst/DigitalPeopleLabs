@@ -2,7 +2,7 @@ function submitLoginDetails() {
     const username = $('#username-input').val();
     const password = $('#password-input').val();
 
-    $.post('/api/user/auth', {
+    $.post('/api/user/login', {
         username,
         password
     }).done(() => {

@@ -12,6 +12,11 @@ body {
     padding-right: 0;
 }
 
+#main {
+    margin-top: 5px;
+    padding-right: 10px;
+}
+
 .user-img {
     height: 48px;
     width: auto;
