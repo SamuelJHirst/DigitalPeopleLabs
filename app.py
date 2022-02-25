@@ -56,4 +56,8 @@ def api_user_search():
 
     return jsonify(users)
 
+@app.errorhandler(404)
+def error_404(e):
+    return render_template("404.html")
+
 app.run("127.0.0.1", 8080, debug=True)
