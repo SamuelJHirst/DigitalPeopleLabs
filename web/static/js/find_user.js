@@ -6,9 +6,8 @@ function searchUsers() {
             
         }
 
-        $('#main').html(`
+        $('#search-results').html(`
             <div class="card" id="user-search-results">
-                <h1 id="header">Search Results</h1>
                 <ul class="list-group list-group-flush">
         `);
 
@@ -18,7 +17,7 @@ function searchUsers() {
                 admin_badge = '<span class="badge bg-primary">Admin</span>';
             }
 
-            $('#main').append(`
+            $('#search-results').append(`
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-1">
@@ -33,7 +32,7 @@ function searchUsers() {
             `);
         }
 
-        $('#main').append(`
+        $('#search-results').append(`
                 </ul>
             </div>
         `);

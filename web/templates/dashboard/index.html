@@ -1,0 +1,14 @@
+{% extends "partials/main.html" %}
+{% block content %}
+
+{% include "partials/dashboard_sidebar.html" %}
+
+<div id="main">
+    {% if banner == "welcome" %}
+        <div class="alert alert-success" role="alert">
+            Welcome back, {{ session['user']['first_name'] }}!
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="/static/css/dashboard.css">
+<div class="p-3 bg-light" id="sidebar">
+    <h4 class="text-center" style="margin: 0;">Dashboard</h4>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="/dashboard" class="nav-link {% if page == 'home' %}active{%else%}link-dark{%endif%}">
+                <i class="bi bi-house-door"></i>
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="/dashboard/announcements" class="nav-link {% if page == 'announcements' %}active{%else%}link-dark{%endif%}">
+                <i class="bi bi-bell"></i>
+                Announcements
+            </a>
+        </li>
+        <li>
+            <a href="/dashboard/hours" class="nav-link {% if page == 'hours' %}active{%else%}link-dark{%endif%}">
+                <i class="bi bi-clock"></i>
+                Working Hours
+            </a>
+        </li>
+        <li>
+            <a href="/dashboard/holidays" class="nav-link {% if page == 'holidays' %}active{%else%}link-dark{%endif%}">
+                <i class="bi bi-sun"></i>
+                Holiday Bookings
+            </a>
+        </li>
+        <li>
+            <a href="/dashboard/links" class="nav-link {% if page == 'links' %}active{%else%}link-dark{%endif%}">
+                <i class="bi bi-bookmarks"></i>
+                Quick Links
+            </a>
+        </li>
+        <li>
+            <a href="/dashboard/people"class="nav-link {% if page == 'people' %}active{%else%}link-dark{%endif%}">
+                <i class="bi bi-person-lines-fill"></i>
+                Search People
+            </a>
+        </li>
+        {% if session["user"]["admin"] %}
+            <hr /> 
+            <li>
+                <a href="/dashboard/admin/announcements" class="nav-link link-dark">
+                    <i class="bi bi-bell"></i>
+                    Post Announcement
+                </a>
+            </li> 
+            <li>
+                <a href="/dashboard/admin/users" class="nav-link link-dark">
+                    <i class="bi bi-people-fill"></i>
+                    User Management
+                </a>
+            </li> 
+            <li>
+                <a href="/dashboard/admin/links" class="nav-link link-dark">
+                    <i class="bi bi-bookmarks"></i>
+                    Edit Quick Links
+                </a>
+            </li> 
+        {% endif %}
+    </ul>
+</div>

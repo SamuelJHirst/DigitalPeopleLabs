@@ -7,14 +7,22 @@ body {
 }
 
 #sidebar {
-    height: 100%;
-    background-color: #ffffff;
-    padding-right: 0;
+    display: inline-block;
+    width: 280px;
+    height: calc(100% - 56px);
+}
+
+#sidebar i {
+    margin-right: 10px;
 }
 
 #main {
-    margin-top: 5px;
-    padding-right: 10px;
+    display: inline-block;
+    width: calc(100% - 285px);
+    padding-right: 5px;
+    position: absolute;
+    top: 61px;
+    left: 285px;
 }
 
 .user-img {

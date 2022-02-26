@@ -1,0 +1,17 @@
+{% extends "partials/main.html" %}
+{% block content %}
+
+{% include "partials/dashboard_sidebar.html" %}
+
+<div id="main">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="User's Name" aria-label="User's Name" aria-describedby="name-button" id="user-search-query">
+        <button class="btn btn-primary" type="button" id="name-button">Search</button>
+    </div>
+    <div id="search-results">
+        
+    </div>
+</div>
+
+<script src="/static/js/find_user.js"></script>
+{% endblock %}

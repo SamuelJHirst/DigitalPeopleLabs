@@ -19,7 +19,42 @@ def dashboard():
 
     banner = request.args.get("banner")
     
-    return render_template("dashboard.html", route="/dashboard", banner=banner)
+    return render_template("dashboard/index.html", route="/dashboard", page="home", banner=banner)
+
+@app.route("/dashboard/announcements", methods=["GET"])
+def dashboard_announcements():
+    if "user" not in session.keys():
+        return redirect("/login")
+    
+    return render_template("dashboard/index.html", route="/dashboard", page="announcements")
+
+@app.route("/dashboard/hours", methods=["GET"])
+def dashboard_hours():
+    if "user" not in session.keys():
+        return redirect("/login")
+    
+    return render_template("dashboard/index.html", route="/dashboard", page="hours")
+
+@app.route("/dashboard/holidays", methods=["GET"])
+def dashboard_holidays():
+    if "user" not in session.keys():
+        return redirect("/login")
+    
+    return render_template("dashboard/index.html", route="/dashboard", page="holidays")
+
+@app.route("/dashboard/links", methods=["GET"])
+def dashboard_links():
+    if "user" not in session.keys():
+        return redirect("/login")
+    
+    return render_template("dashboard/index.html", route="/dashboard", page="links")
+
+@app.route("/dashboard/people", methods=["GET"])
+def dashboard_people():
+    if "user" not in session.keys():
+        return redirect("/login")
+    
+    return render_template("dashboard/people.html", route="/dashboard", page="people")
 
 @app.route("/login", methods=["GET"])
 def login():
