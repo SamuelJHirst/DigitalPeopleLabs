@@ -38,3 +38,8 @@ body {
     padding: 10px;
     text-align: center;
 }
+
+.tab-pane {
+    background-color: white;
+    padding: 10px;
+}

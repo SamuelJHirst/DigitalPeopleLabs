@@ -56,6 +56,16 @@ def dashboard_people():
     
     return render_template("dashboard/people.html", route="/dashboard", page="people")
 
+@app.route("/dashboard/admin/users", methods=["GET"])
+def dashboard_admin_users():
+    if "user" not in session.keys():
+        return redirect("/login")
+
+    if not session["user"]["admin"]:
+        return redirect("/dashboard")
+    
+    return render_template("dashboard/user_management.html", route="/dashboard", page="user_management")
+
 @app.route("/login", methods=["GET"])
 def login():
     if "user" in session.keys():
@@ -82,6 +92,17 @@ def api_user_login():
     
     session["user"] = UserController.get_user(username)
     return "OK"
+
+@app.route("/api/user/get", methods=["GET"])
+def api_user_get():
+    query = request.args.get("query", "")
+    
+    user = UserController.get_user(query)
+
+    if user is None:
+        return "Not found", 404
+
+    return jsonify(user)
 
 @app.route("/api/user/search", methods=["GET"])
 def api_user_search():

@@ -1,0 +1,105 @@
+{% extends "partials/main.html" %}
+{% block content %}
+
+{% include "partials/dashboard_sidebar.html" %}
+
+<div id="main">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="new-user-tab" data-bs-toggle="tab" data-bs-target="#new-user" type="button" role="tab" aria-controls="home" aria-selected="true">Create New User</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="existing-user-tab" data-bs-toggle="tab" data-bs-target="#existing-user" type="button" role="tab" aria-controls="profile" aria-selected="false">Edit Existing User</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="new-user" role="tabpanel" aria-labelledby="new-user-tab">
+            <form>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="newUserFirstNameInput" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="newUserFirstNameInput">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="newUserLastNameInput" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="newUserLastNameInput">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="newUserEmailAddressInput" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="newUserEmailAddressInput">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="newUserJobTitleInput" class="form-label">Job Title</label>
+                        <input type="text" class="form-control" id="newUserJobTitleInput">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="newUserUsernameInput" class="form-label">Login Username</label>
+                        <input type="text" class="form-control" id="newUserUsernameInput">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="newUserPasswordInput" class="form-label">Login Password</label>
+                        <input type="password" class="form-control" id="newUserPasswordInput">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3 pt-2">
+                        <input type="checkbox" class="form-check-input" id="newUserAdminInput">
+                        <label class="form-check-label" for="newUserAdminInput">Admin</label>
+                    </div>
+                    <div class="col mb-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="existing-user" role="tabpanel" aria-labelledby="existing-user-tab">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="User's Name" aria-label="User's Name" aria-describedby="name-button" id="user-search-query">
+                <button class="btn btn-primary" type="button" id="name-button">Search</button>
+            </div>
+            <form id="existingUser" style="display: none;">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="existingUserFirstNameInput" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="existingUserFirstNameInput">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="existingUserLastNameInput" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="existingUserLastNameInput">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="existingUserEmailAddressInput" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="existingUserEmailAddressInput">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="existingUserJobTitleInput" class="form-label">Job Title</label>
+                        <input type="text" class="form-control" id="existingUserJobTitleInput">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="existingUserUsernameInput" class="form-label">Login Username</label>
+                        <input type="text" class="form-control" id="existingUserUsernameInput">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3 pt-2">
+                        <input type="checkbox" class="form-check-input" id="existingUserAdminInput">
+                        <label class="form-check-label" for="existingUserAdminInput">Admin</label>
+                    </div>
+                    <div class="col mb-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/static/js/user_management.js"></script>
+{% endblock %}
