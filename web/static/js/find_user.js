@@ -3,7 +3,14 @@ function searchUsers() {
 
     $.get(`/api/user/search?query=${query}`, (response) => {
         if (response.length === 0) {
-            
+            $('#search-results').html(`
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <span><em>No results found.</em></span>
+                    </div>
+                </div>
+            `);
+            return;
         }
 
         $('#search-results').html(`
@@ -41,4 +48,10 @@ function searchUsers() {
 
 $('#name-button').click(() => {
     searchUsers();
+});
+
+$("#user-search-query").keydown((e) => {
+    if (e.keyCode === 13) {
+        searchUsers();
+    }
 });

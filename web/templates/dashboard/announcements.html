@@ -4,6 +4,13 @@
 {% include "partials/dashboard_sidebar.html" %}
 
 <div id="main">
+    {% if not announcements[0] %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <span><em>No announcements found.</em></span>
+            </div>
+        </div>
+    {% endif %}
     {% for announcement in announcements %}
         <div class="card mb-3">
             <div class="card-header">
@@ -11,7 +18,7 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ announcement["title"] }}</h5>
-                <p class="card-text">{{ announcement["text"] }}</p>
+                <p class="card-text">{{ announcement["text"] | safe }}</p>
             </div>
         </div>
     {% endfor %}

@@ -91,9 +91,11 @@ def dashboard_admin_announcements():
     if not session["user"]["admin"]:
         return redirect("/dashboard")
 
+    announcement = request.args.get("name")
+
     unread_announcements = AnnouncementsController.count_unreads(session["user"]["username"])
     
-    return render_template("dashboard/post_announcement.html", route="/dashboard", page="post_announcement", unreads=unread_announcements)
+    return render_template("dashboard/post_announcement.html", route="/dashboard", page="post_announcement", unreads=unread_announcements, announcement=announcement)
 
 @app.route("/login", methods=["GET"])
 def login():

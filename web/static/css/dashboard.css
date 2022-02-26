@@ -19,10 +19,12 @@ body {
 #main {
     display: inline-block;
     width: calc(100% - 285px);
+    height: calc(100% - 61px);
     padding-right: 5px;
     position: absolute;
     top: 61px;
     left: 285px;
+    overflow-y: auto;
 }
 
 .user-img {

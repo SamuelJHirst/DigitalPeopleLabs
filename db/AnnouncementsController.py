@@ -1,7 +1,9 @@
 from platformdirs import user_runtime_dir
 from db.connection import db
 
+from pymongo import DESCENDING
 from time import time
+from markdown import markdown
 
 class AnnouncementsController:
     @staticmethod
@@ -30,7 +32,9 @@ class AnnouncementsController:
     def get_unreads(user):
         user_id = dict(db.users.find_one({ "username": user }, { "_id": 1 }))["_id"]
 
-        announcements = list(db.announcements.find({ "read_by": { "$nin": [user_id] } }, { "_id": 0, "read_by": 0 }))
+        announcements = db.announcements.find({ "read_by": { "$nin": [user_id] } }, { "_id": 0, "read_by": 0 })
+        announcements.sort("timestamp", DESCENDING)
+        announcements = list(announcements)
 
         authors = {}
 
@@ -39,6 +43,7 @@ class AnnouncementsController:
 
         for i in range(len(announcements)):
             announcements[i]["author"] = authors[announcements[i]["author"]]
+            announcements[i]["text"] = markdown(announcements[i]["text"])
 
         return announcements
 

@@ -8,8 +8,9 @@ $('#announcementSubmit').click(() => {
             text
         }),
         contentType : 'application/json',
-        type : 'POST'
-    }, (response) => {
-        console.log(response);
+        type : 'POST',
+        complete: () => {
+            window.location = '/dashboard/admin/announcements?name=' + title;
+        }
     });
 });

@@ -1,6 +1,7 @@
 from db.connection import db
 
 import hashlib
+from pymongo import ASCENDING
 
 class UserController:
     @staticmethod
@@ -68,6 +69,8 @@ class UserController:
             "password": 0,
             "_id": 0
         })
+
+        users.sort([("first_name", ASCENDING), ("last_name", ASCENDING)])
 
         return list(users)
 
