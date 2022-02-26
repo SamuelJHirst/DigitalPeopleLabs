@@ -13,6 +13,13 @@
             <a href="/dashboard/announcements" class="nav-link {% if page == 'announcements' %}active{%else%}link-dark{%endif%}">
                 <i class="bi bi-bell"></i>
                 Announcements
+                {% if unreads > 0 %}
+                    {% if unreads < 100 %}
+                        <span class="badge rounded-pill bg-danger" style="float: right; position: relative; top: 2px;">{{ unreads }}</span>
+                    {% else %}
+                        <span class="badge rounded-pill bg-danger" style="float: right; position: relative; top: 2px;">99+</span>
+                    {% endif %}
+                {% endif %}
             </a>
         </li>
         <li>

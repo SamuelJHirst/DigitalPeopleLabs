@@ -1,0 +1,24 @@
+{% extends "partials/main.html" %}
+{% block content %}
+
+{% include "partials/dashboard_sidebar.html" %}
+
+<div id="main">
+    <div class="card">
+        <div class="card-content p-3">
+            <div class="mb-3">
+                <label for="announcementTitle" class="form-label">Announcement Title</label>
+                <input type="email" class="form-control" id="announcementTitle">
+            </div>
+            <div class="mb-3">
+                <label for="announcementText" class="form-label">Announcement Text</label>
+                <textarea class="form-control" id="announcementText" rows="6"></textarea>
+                <div class="form-text">Supports Markdown</div>
+            </div>
+            <button type="button" class="btn btn-primary" id="announcementSubmit">Submit</button>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/post_announcement.js"></script>
+{% endblock %}

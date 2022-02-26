@@ -1,0 +1,20 @@
+{% extends "partials/main.html" %}
+{% block content %}
+
+{% include "partials/dashboard_sidebar.html" %}
+
+<div id="main">
+    {% for announcement in announcements %}
+        <div class="card mb-3">
+            <div class="card-header">
+                {{ announcement["author"]["first_name"] }} {{ announcement["author"]["last_name"] }} | <span class="timestamp">{{ announcement["timestamp"] }}</span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ announcement["title"] }}</h5>
+                <p class="card-text">{{ announcement["text"] }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<script src="/static/js/announcements.js"></script>
+{% endblock %}
