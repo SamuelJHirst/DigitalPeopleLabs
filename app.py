@@ -143,6 +143,22 @@ def api_user_search():
 
     return jsonify(users)
 
+@app.route("/api/admin/user", methods=["POST"])
+def api_admin_user():
+    body = request.get_json()
+    
+    UserController.create_user(
+        body["firstName"],
+        body["lastName"],
+        body["jobTitle"],
+        body["email"],
+        body["admin"],
+        body["username"],
+        body["password"],
+    )
+
+    return "Created", 201
+
 @app.route("/api/announcements/read", methods=["POST"])
 def api_announcements_read():
     AnnouncementsController.mark_as_read(session["user"]["username"])

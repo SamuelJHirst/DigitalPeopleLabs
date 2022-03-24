@@ -1,4 +1,3 @@
-from platformdirs import user_runtime_dir
 from db.connection import db
 
 from pymongo import DESCENDING
