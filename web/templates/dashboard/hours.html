@@ -1,0 +1,50 @@
+{% extends "partials/main.html" %}
+{% block content %}
+
+{% include "partials/dashboard_sidebar.html" %}
+
+<div id="main">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success" type="button" id="shiftStart" {% if open_shift %}disabled{% endif %}>Start Shift</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-danger" type="button" id="shiftEnd" {% if not open_shift %}disabled{% endif %}>End Shift</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Shift Start Timestamp</th>
+                        <th>Shift End Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for shift in shifts %}
+                        <tr>
+                            <td><span class="timestamp">{{ shift["startTime"] }}</span></td>
+                            {% if shift["endTime"] %}
+                                <td><span class="timestamp">{{ shift["endTime"] }}</span></td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/hours.js"></script>
+{% endblock %}

@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, request, session, jsonify
 from db.AnnouncementsController import AnnouncementsController
+from db.HoursController import HoursController
 app = Flask(
     __name__,
     template_folder="web/templates",
@@ -41,8 +42,12 @@ def dashboard_hours():
         return redirect("/login")
 
     unread_announcements = AnnouncementsController.count_unreads(session["user"]["username"])
+
+    open_shift = HoursController.has_open_shift(session["user"]["username"])
+
+    shifts = HoursController.get_users_shifts(session["user"]["username"])
     
-    return render_template("dashboard/index.html", route="/dashboard", page="hours", unreads=unread_announcements)
+    return render_template("dashboard/hours.html", route="/dashboard", page="hours", unreads=unread_announcements, open_shift=open_shift, shifts=shifts)
 
 @app.route("/dashboard/holidays", methods=["GET"])
 def dashboard_holidays():
@@ -191,6 +196,18 @@ def api_admin_announcement():
     AnnouncementsController.create_announcement(body["title"], body["text"], session["user"]["username"])
 
     return "Created", 201
+
+@app.route("/api/hours/start", methods=["POST"])
+def api_hours_start():
+    HoursController.start_shift(session["user"]["username"])
+
+    return "OK"
+
+@app.route("/api/hours/end", methods=["POST"])
+def api_hours_end():
+    HoursController.end_shift(session["user"]["username"])
+
+    return "OK"
 
 @app.errorhandler(404)
 def error_404(e):
