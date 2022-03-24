@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, request, session, jsonify
 from db.AnnouncementsController import AnnouncementsController
 from db.HoursController import HoursController
+from db.LinksController import LinksController
 app = Flask(
     __name__,
     template_folder="web/templates",
@@ -105,6 +106,20 @@ def dashboard_admin_announcements():
     
     return render_template("dashboard/post_announcement.html", route="/dashboard", page="post_announcement", unreads=unread_announcements, announcement=announcement)
 
+@app.route("/dashboard/admin/links", methods=["GET"])
+def dashboard_admin_links():
+    if "user" not in session.keys():
+        return redirect("/login")
+
+    if not session["user"]["admin"]:
+        return redirect("/dashboard")
+    
+    unread_announcements = AnnouncementsController.count_unreads(session["user"]["username"])
+
+    links = LinksController.get_all_links()
+
+    return render_template("dashboard/links_management.html", route="/dashboard", page="links_management", unreads=unread_announcements, links=links)
+
 @app.route("/login", methods=["GET"])
 def login():
     if "user" in session.keys():
@@ -206,6 +221,19 @@ def api_hours_start():
 @app.route("/api/hours/end", methods=["POST"])
 def api_hours_end():
     HoursController.end_shift(session["user"]["username"])
+
+    return "OK"
+
+@app.route("/api/admin/links", methods=["POST"])
+def api_admin_new_link():
+    body = request.get_json()
+
+    LinksController.create_link(
+        body["name"],
+        body["textColour"],
+        body["backgroundColour"],
+        body["url"]
+    )
 
     return "OK"
 

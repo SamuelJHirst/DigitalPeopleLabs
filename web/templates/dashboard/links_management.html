@@ -1,0 +1,71 @@
+{% extends "partials/main.html" %}
+{% block content %}
+
+{% include "partials/dashboard_sidebar.html" %}
+
+<div id="main">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-8">
+                    <div class="mb-3">
+                        <label for="newLinkName" class="form-label">Link Name</label>
+                        <input type="text" class="form-control" id="newLinkName">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="mb-3">
+                        <label for="newLinkTextColour" class="form-label">Text Colour</label>
+                        <input type="color" class="form-control form-control-color" id="newLinkTextColour" value="#563d7c" style="width: 100%;">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="mb-3">
+                        <label for="newLinkBackgroundColour" class="form-label">Background Colour</label>
+                        <input type="color" class="form-control form-control-color" id="newLinkBackgroundColour" value="#563d7c" style="width: 100%;">
+                    </div>
+                </div>
+                <div class="col-11">
+                    <div class="mb-3">    
+                        <label for="newLinkURL" class="form-label">Link URL</label>
+                        <input type="text" class="form-control" id="newLinkURL">
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="mb-3">   
+                        <div class="d-grid gap-2" style="position: relative; top: 31px;">
+                            <button class="btn btn-primary" type="button" id="newLinkSubmit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Link Name</th>
+                        <th>Link Colour</th>
+                        <th>Link URL</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for link in links %}
+                        <tr>
+                            <td>{{ link["name"] }}</td>
+                            <td><span style="background-color: {{ link['backgroundColour'] }}; color: {{ link['textColour'] }};">Example</span></td>
+                            <td><a href="{{ link['url'] }}">{{ link["url"] }}</a></td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/links_management.js"></script>
+{% endblock %}
