@@ -75,6 +75,26 @@ class UserController:
         return list(users)
 
     @staticmethod
+    def edit_user(old_username, first_name, last_name, job_title, email_address, admin, username):
+        update = db.users.find_one_and_update({
+            "username": old_username
+        }, {
+            "$set": {
+                "first_name": first_name,
+                "last_name": last_name,
+                "job_title": job_title,
+                "email_address": email_address,
+                "admin": admin,
+                "username": username
+            }
+        })
+
+        if not update:
+            return False
+
+        return True
+
+    @staticmethod
     def delete_user(username):
         deletion = db.users.delete_one({
             "username": username

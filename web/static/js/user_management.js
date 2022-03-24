@@ -21,6 +21,7 @@ function getUser() {
         $('#existingUserJobTitleInput').val(response.job_title);
         $('#existingUserUsernameInput').val(response.username);
         $('#existingUserAdminInput').attr('checked', response.admin);
+        $('#existingUser').data('editing', response.username);
         $('#existingUser').slideDown();
     });
 }
@@ -42,7 +43,7 @@ $('#newUserSubmit').click(() => {
     const password = $('#newUserPasswordInput').val();
     const email = $('#newUserEmailAddressInput').val();
     const jobTitle = $('#newUserJobTitleInput').val();
-    const admin = $('#newUserAdmin').is(':checked');
+    const admin = $('#newUserAdminInput').is(':checked');
 
     let valid = true;
 
@@ -63,11 +64,11 @@ $('#newUserSubmit').click(() => {
         valid = false;
     }
     if (!email) {
-        $('#newUserJobTitleInput').addClass('is-invalid');
+        $('#newUserEmailAddressInput').addClass('is-invalid');
         valid = false;
     }
     if (!jobTitle) {
-        $('#newUserEmailAddressInput').addClass('is-invalid');
+        $('#newUserJobTitleInput').addClass('is-invalid');
         valid = false;
     }
 
@@ -94,9 +95,73 @@ $('#newUserSubmit').click(() => {
             admin
         }),
         contentType : 'application/json',
-        type : 'POST',
+        method : 'POST',
         complete: () => {
-            window.location = '/dashboard/admin/users?name=' + firstName + ' ' + lastName;
+            window.location = '/dashboard/admin/users?name=' + firstName + ' ' + lastName + '&action=created';
+        }
+    });
+});
+
+$('#existingUserSubmit').click(() => {
+    const oldUsername = $('#existingUser').data('editing');
+    const firstName = $('#existingUserFirstNameInput').val();
+    const lastName = $('#existingUserLastNameInput').val();
+    const username = $('#existingUserUsernameInput').val();
+    const password = $('#existingUserPasswordInput').val();
+    const email = $('#existingUserEmailAddressInput').val();
+    const jobTitle = $('#existingUserJobTitleInput').val();
+    const admin = $('#existingUserAdminInput').is(':checked');
+
+    let valid = true;
+
+    if (!firstName) {
+        $('#existingUserFirstNameInput').addClass('is-invalid');
+        valid = false;
+    }
+    if (!lastName) {
+        $('#existingUserLastNameInput').addClass('is-invalid');
+        valid = false;
+    }
+    if (!username) {
+        $('#existingUserUsernameInput').addClass('is-invalid');
+        valid = false;
+    }
+    if (!email) {
+        $('#existingUserEmailAddressInput').addClass('is-invalid');
+        valid = false;
+    }
+    if (!jobTitle) {
+        $('#existingUserJobTitleInput').addClass('is-invalid');
+        valid = false;
+    }
+
+    if (!valid) {
+        setTimeout(() => {
+            $('#existingUserFirstNameInput').removeClass('is-invalid');
+            $('#existingUserLastNameInput').removeClass('is-invalid');
+            $('#existingUserUsernameInput').removeClass('is-invalid');
+            $('#existingUserPasswordInput').removeClass('is-invalid');
+            $('#existingUserEmailAddressInput').removeClass('is-invalid');
+            $('#existingUserJobTitleInput').removeClass('is-invalid');
+        }, 3000);
+        return;
+    }
+
+    $.ajax('/api/admin/user', {
+        data : JSON.stringify({
+            oldUsername,
+            firstName,
+            lastName,
+            username,
+            password,
+            email,
+            jobTitle,
+            admin
+        }),
+        contentType : 'application/json',
+        method : 'PUT',
+        complete: () => {
+            window.location = '/dashboard/admin/users?name=' + firstName + ' ' + lastName + '&action=edited';
         }
     });
 });

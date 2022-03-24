@@ -144,7 +144,7 @@ def api_user_search():
     return jsonify(users)
 
 @app.route("/api/admin/user", methods=["POST"])
-def api_admin_user():
+def api_admin_user_create():
     body = request.get_json()
     
     UserController.create_user(
@@ -158,6 +158,22 @@ def api_admin_user():
     )
 
     return "Created", 201
+
+@app.route("/api/admin/user", methods=["PUT"])
+def api_admin_user_edit():
+    body = request.get_json()
+    
+    UserController.edit_user(
+        body["oldUsername"],
+        body["firstName"],
+        body["lastName"],
+        body["jobTitle"],
+        body["email"],
+        body["admin"],
+        body["username"]
+    )
+
+    return "OK"
 
 @app.route("/api/announcements/read", methods=["POST"])
 def api_announcements_read():
